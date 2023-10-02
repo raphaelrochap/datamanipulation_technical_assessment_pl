@@ -20,11 +20,11 @@
  * Implementação de testes automatizados;
  * Validação dos dados lidos sobre cada elemento antes de realizar a criação na base OZmap;
  * A aplicação deverá possuir um sistema robusto de tratamento de erros para lidar com possíveis falhas nas APIs externas ou na própria lógica da aplicação;
- * Implementação de um logger, disponibilizados em uma interface externa para consulta;
+ * Implementação de um logger, com logs disponibilizados em uma interface externa para consulta;
  * Arquivo read.me com instruções de como executar a aplicação, e configurações disponíveis;
  * Exportação de relatórios de execução (csv);
  * Deploy da aplicação;
-  IMPORTANTE: A aplicação deve ser capaz de gerenciar grandes volumes de dados e executar operações de forma eficiente, considerando que a máquina onde está a base OZmap pode possuir recursos limitados. Considerando que a linguagem Node.js permite a execução simultânea de múltiplas threads nativamente, sem a necessidade de módulos externos, projete sua aplicação de modo que cada thread seja responsável por um conjunto específico de tarefas, visando uma melhor utilização de recursos do sistema;
+  IMPORTANTE: A aplicação deve ser capaz de gerenciar grandes volumes de dados e executar operações de forma eficiente, considerando que a máquina onde está a base OZmap pode possuir recursos limitados. Além disso, como a linguagem Node.js permite a execução simultânea de múltiplas threads nativamente, sem a necessidade de módulos externos, projete sua aplicação de modo que cada thread seja responsável por um conjunto específico de tarefas, visando uma melhor utilização de recursos do sistema;
  
 <a id="instrucoes"></a>
 ## 2. Instruções
@@ -44,21 +44,21 @@
        "output": “coluna Outputs” ,
        "input": “coluna Inputs” 
      }
-   * Exemplo de atributos a serem enviados: implanted, isDrop, parent (ID), project (ID), name, splitterType (ID), ratio;
+   * Exemplo de atributos a serem enviados: implanted, isDrop, parent (ID da box), project (ID), name, splitterType (ID), ratio;
  * Para a criação de clientes:
    * Para criação de um cliente completo no OZmap, é necessário realizar a criação de um imóvel, no qual é possível enviar os dados do cliente a ser criado;
-   * Os dados de name, code e address devem ser buscados em uma API externa fornecida abaixo, que gera usuários randomicos;
-   * Atributos variáveis do imóvel a ser criado, buscados na api externa: address = location.street.name + location.street.number + location.postcode + location.city + location.state + location.country; client.name = name.first + name.last; client.code = name.first + "." + name.last (tudo em minúsculo);
+   * Os dados de name, code e address devem ser buscados em uma API externa fornecida abaixo, que gera usuários randômicos;
+   * Atributos variáveis do imóvel/cliente a ser criado, buscados na api externa: address = location.street.name + location.street.number + location.postcode + location.city + location.state + location.country; client.name = name.first + name.last; client.code = name.first + "." + name.last (tudo em minúsculo);
    * As coordenadas devem ser enviadas somente pelos atributos lng e lat;
    * O Status deve ser enviado 0 (OK) ou 1 (ERROR);
-   * Exemplo de atributos a serem enviados: address, project (ID), box (ID), lat, lng, client.implanted, client.name, client.code, client.status;
+   * Exemplo de atributos a serem enviados: address (api externa), project (ID), box (ID), lat, lng, client.implanted, client.name (api externa), client.code (api externa), client.status (1 ou 0);
 
 <a id="dados"></a>
 ## 3. Dados necessários
 * API externa: https://randomuser.me/api
 * Documentação API OZmap: https://ozmap.stoplight.io/docs/ozmap/3qm4gmpe6lh1q-ferramentas-de-pesquisa
 * URL da base OZmap: https://data-manipulation-6.ozmap.com.br:9994
-* Nome do projeto: Fornecido individualmente;
+* Credenciais OZmap e nome do projeto: Fornecidos individualmente;
 * Arquivo XLS disponivel no diretório “files”;
 
 <a id="submissao"></a>
