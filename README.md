@@ -51,8 +51,8 @@
    * Atributos variáveis do imóvel/cliente a ser criado, buscados na api externa: address = location.street.name + location.street.number + location.postcode + location.city + location.state + location.country; client.name = name.first + name.last; client.code = name.first + "." + name.last (tudo em minúsculo);
    * As coordenadas devem ser enviadas somente pelos atributos lng e lat;
    * O Status deve ser enviado 0 (OK) ou 1 (ERROR);
-   * Enviar os atributos force e auto_connect sempre com valor "true";
-   * Exemplo de atributos a serem enviados: address (api externa), project (ID), box (ID), lat, lng, force=true, auto_connect=true, client.implanted, client.name (api externa), client.code (api externa), client.status (1 ou 0);
+   * Enviar os atributos force, auto_connect e client.implanted sempre com valor "true";
+   * Exemplo de atributos a serem enviados: address (api externa), project (ID), box (ID), lat, lng, force=true, auto_connect=true, client.implanted=true, client.name (api externa), client.code (api externa), client.status (1 ou 0);
 
 <a id="dados"></a>
 ## 3. Dados necessários
