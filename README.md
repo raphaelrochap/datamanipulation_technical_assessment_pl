@@ -29,13 +29,29 @@
 <a id="instrucoes"></a>
 ## 2. Instruções
 
- A API externa consultada retorna um usuário aleatório a cada requisição. Na primeira execução da aplicação, ela deve consultar a API externa e usar os dados obtidos para criar um imóvel com cliente no OZmap. Nas execuções seguintes, a aplicação deve tentar criar dois imóveis com cliente no OZmap: um com os mesmos dados da execução anterior e outro com novos dados coletados novamente na API externa. Para definir os atributos do imóvel com cliente no OZmap, considere as seguintes orientações:
- * Dados fixos: box = 64ac62633f250c0014f65dc2, auto_connect = false, force = true;
- * Dados variáveis:
-   address = location.street.name + location.street.number + location.postcode + location.city + location.state + location.country;
-   client.name = name.first + name.last;
-   client.code = name.first + "." + name.last (tudo em minúsculo);
-   client.observation = email;
+ O tipo dos elementos a serem criados na base OZmap é definido pelo nome de cada tabela do arquivo XLS. Os elementos devem ser criados no MongoDB em coleções separadas para cada tipo. O atributo “project” deve ser preenchido com o ID do projeto OZmap fornecido ao candidato (fornecemos o nome do projeto, o candidato precisa encontrar o ID do projeto utilizando a API OZmap). Sobre os elementos a serem criados na base OZmap:
+ * A sequencia de criação deve ser: Boxes, Splitters, Clients;
+ * Para criação de Boxes:
+   * As coordenadas devem ser enviadas somente pelos atributos lng e lat;
+   * A coluna “Deployment status” pode se referir aos atributos draft, implanted ou certified (exclusivamente);
+   * Os IDs dos tipos de caixa devem ser buscados pela api: /box-types
+   * Exemplo de atributos a serem enviados: name, lat, lng, boxType (ID), draft (ou implanted ou certified), project (ID), hierarchyLevel;
+ * Para criação de Splitters:
+   * A coluna “Box” se refere ao atributor "parent" dos splitters, preenchido por um id de box;
+   * Os IDs dos tipos de splitter devem ser buscados pela api: /splitter-types
+   * Os dados das colunas Inputs e Outputs devem ser enviados pelo atributo "ratio", da seguinte forma:
+     "ratio": {
+       "output": “coluna Outputs” ,
+       "input": “coluna Inputs” 
+     }
+   * Exemplo de atributos a serem enviados: implanted, isDrop, parent (ID), project (ID), name, splitterType (ID), ratio;
+ * Para a criação de clientes:
+   * Para criação de um cliente completo no OZmap, é necessário realizar a criação de um imóvel, no qual é possível enviar os dados do cliente a ser criado;
+   * Os dados de name, code e address devem ser buscados em uma API externa fornecida abaixo, que gera usuários randomicos;
+   * Atributos variáveis do imóvel a ser criado, buscados na api externa: address = location.street.name + location.street.number + location.postcode + location.city + location.state + location.country; client.name = name.first + name.last; client.code = name.first + "." + name.last (tudo em minúsculo);
+   * As coordenadas devem ser enviadas somente pelos atributos lng e lat;
+   * O Status deve ser enviado 0 (OK) ou 1 (ERROR);
+   * Exemplo de atributos a serem enviados: address, project (ID), box (ID), lat, lng, client.implanted, client.name, client.code, client.status;
 
 <a id="dados"></a>
 ## 3. Dados necessários
