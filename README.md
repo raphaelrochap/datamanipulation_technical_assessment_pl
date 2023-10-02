@@ -40,12 +40,10 @@
 <a id="dados"></a>
 ## 3. Dados necessários
 * API externa: https://randomuser.me/api
-* Documentação API OZmap: https://ozmap.stoplight.io/docs/ozmap/180b1534fb63f-cria-um-imovel
-* URL da base OZmap: http://sandbox.ozmap.com.br:9090
-* Chave-api da base OZmap:
-```json
-eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtb2R1bGUiOiJhcGkiLCJ1c2VyIjoiNWQ5ZjNmYjgyMDAxNDEwMDA2NDdmNzY4IiwiY3JlYXRpb25EYXRlIjoiMjAyMy0wNy0xMFQxNTowMzoyOC4zOTBaIiwiaWF0IjoxNjg5MDAxNDA4fQ.rACa9_8wIp7FjbGHVEzvaQmtotsOvGnmQPf2Z1yMFw8
-```
+* Documentação API OZmap: https://ozmap.stoplight.io/docs/ozmap/3qm4gmpe6lh1q-ferramentas-de-pesquisa
+* URL da base OZmap: https://data-manipulation-6.ozmap.com.br:9994
+* Nome do projeto: Fornecido individualmente;
+* Arquivo XLS disponivel no diretório “files”;
 
 <a id="submissao"></a>
 ## 4. Submissão da solução
