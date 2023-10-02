@@ -33,9 +33,9 @@
  * A sequencia de criação deve ser: Boxes, Splitters, Clients;
  * Para criação de Boxes:
    * As coordenadas devem ser enviadas somente pelos atributos lng e lat;
-   * A coluna “Deployment status” pode se referir aos atributos draft, implanted ou certified (exclusivamente);
+   * Enviar o atributo implanted sempre com valor "true";
    * Os IDs dos tipos de caixa devem ser buscados pela api: /box-types
-   * Exemplo de atributos a serem enviados: name, lat, lng, boxType (ID), draft (ou implanted ou certified), project (ID), hierarchyLevel;
+   * Exemplo de atributos a serem enviados: name, lat, lng, boxType (ID), implanted=true, project (ID), hierarchyLevel;
  * Para criação de Splitters:
    * A coluna “Box” se refere ao atributor "parent" dos splitters, preenchido por um id de box;
    * Os IDs dos tipos de splitter devem ser buscados pela api: /splitter-types
@@ -51,7 +51,8 @@
    * Atributos variáveis do imóvel/cliente a ser criado, buscados na api externa: address = location.street.name + location.street.number + location.postcode + location.city + location.state + location.country; client.name = name.first + name.last; client.code = name.first + "." + name.last (tudo em minúsculo);
    * As coordenadas devem ser enviadas somente pelos atributos lng e lat;
    * O Status deve ser enviado 0 (OK) ou 1 (ERROR);
-   * Exemplo de atributos a serem enviados: address (api externa), project (ID), box (ID), lat, lng, client.implanted, client.name (api externa), client.code (api externa), client.status (1 ou 0);
+   * Enviar os atributos force e auto_connect sempre com valor "true";
+   * Exemplo de atributos a serem enviados: address (api externa), project (ID), box (ID), lat, lng, force=true, auto_connect=true, client.implanted, client.name (api externa), client.code (api externa), client.status (1 ou 0);
 
 <a id="dados"></a>
 ## 3. Dados necessários
