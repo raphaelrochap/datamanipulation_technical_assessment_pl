@@ -13,18 +13,31 @@
 <a id="tarefa"></a>
 ## 1. Tarefa
 
-  A avaliação envolve a execução de algumas tarefas desempenhadas no setor de manipulação de dados da empresa, com o objetivo de avaliar a solução desenvolvida pelo candidato para o problema proposto. 
-  A tarefa consiste no desenvolvimento de uma aplicação backend em Typescript que deverá realizar a leitura de um arquivo XLS fornecido, salvar os dados lidos em um banco de dados MongoDB, e a partir destes dados salvos no banco, realizar a criação de diversos elementos via API em uma base OZmap. Além disso, são requisitos adicionais:
- * Aplicação deve rodar em docker;
- * Conexão com mongodb via container;
- * Implementação de testes automatizados;
- * Validação dos dados lidos sobre cada elemento antes de realizar a criação na base OZmap;
- * A aplicação deverá possuir um sistema robusto de tratamento de erros para lidar com possíveis falhas nas APIs externas ou na própria lógica da aplicação;
- * Implementação de um logger, com logs disponibilizados em uma interface externa para consulta;
- * Arquivo read.me com instruções de como executar a aplicação, e configurações disponíveis;
- * Exportação de relatórios de execução (csv);
- * Deploy da aplicação;
-  IMPORTANTE: A aplicação deve ser capaz de gerenciar grandes volumes de dados e executar operações de forma eficiente, considerando que a máquina onde está a base OZmap pode possuir recursos limitados. Além disso, como a linguagem Node.js permite a execução simultânea de múltiplas threads nativamente, sem a necessidade de módulos externos, projete sua aplicação de modo que cada thread seja responsável por um conjunto específico de tarefas, visando uma melhor utilização de recursos do sistema;
+Olá, candidato!
+
+Bem-vindo ao nosso teste técnico para desenvolvedor pleno. Este teste é uma oportunidade para você demonstrar suas habilidades no campo de manipulação de dados. O objetivo é avaliar a solução que você desenvolverá para um problema específico.
+
+A tarefa consiste em criar uma aplicação backend em Typescript que realizará as seguintes ações:
+
+1. Ler um arquivo XLS fornecido.
+2. Salvar os dados lidos em um banco de dados MongoDB.
+3. Criar diversos elementos via API em uma base OZmap com base nos dados salvos no banco.
+
+Além disso, temos alguns requisitos adicionais:
+
+* A aplicação deve ser executada em um contêiner Docker.
+* Deve haver uma conexão com o MongoDB via contêiner.
+* É necessário implementar testes automatizados.
+* Antes de criar elementos na base OZmap, os dados lidos devem ser validados.
+* A aplicação deve ter um sistema de tratamento de erros para lidar com possíveis falhas nas APIs externas ou na lógica da aplicação.
+* Deve ser utilizado um sistema de logs para a aplicação, e como diferencial, disponibilizar uma interface externa para consulta desses logs.
+* Você deve incluir um arquivo read.me com instruções sobre como executar a aplicação e informações de configuração.
+* A aplicação deve ser capaz de exportar relatórios de execução no formato CSV.
+* É necessário realizar o deploy da aplicação.
+
+Importante: A aplicação deve ser eficiente e capaz de lidar com grandes volumes de dados, considerando que a máquina onde está a base OZmap pode ter recursos limitados. Além disso, aproveite a capacidade do Node.js para executar múltiplas threads nativamente, sem a necessidade de módulos externos, para otimizar o uso dos recursos do sistema.
+
+Boa sorte e divirta-se desenvolvendo a solução!
  
 <a id="instrucoes"></a>
 ## 2. Instruções
