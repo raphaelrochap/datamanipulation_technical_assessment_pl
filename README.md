@@ -33,9 +33,7 @@ Além disso, temos alguns requisitos adicionais:
 * Deve ser utilizado um sistema de logs para a aplicação, e como diferencial, disponibilizar uma interface externa para consulta desses logs.
 * Você deve incluir um arquivo read.me com instruções sobre como executar a aplicação e informações de configuração.
 * A aplicação deve ser capaz de exportar relatórios de execução no formato CSV.
-* É necessário realizar o deploy da aplicação.
-
-Importante: A aplicação deve ser eficiente e capaz de lidar com grandes volumes de dados, considerando que a máquina onde está a base OZmap pode ter recursos limitados. Além disso, aproveite a capacidade do Node.js para executar múltiplas threads nativamente, sem a necessidade de módulos externos, para otimizar o uso dos recursos do sistema.
+* A aplicação deve ser eficiente e capaz de lidar com grandes volumes de dados, considerando que a máquina onde está a base OZmap pode ter recursos limitados.
 
 Boa sorte e divirta-se desenvolvendo a solução!
  
