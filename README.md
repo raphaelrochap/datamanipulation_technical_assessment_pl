@@ -69,8 +69,8 @@ Boa sorte e divirta-se desenvolvendo a solução!
 ## 3. Dados necessários
 * API externa: https://randomuser.me/api
 * Documentação API OZmap: https://ozmap.stoplight.io/docs/ozmap/3qm4gmpe6lh1q-ferramentas-de-pesquisa
-* URL da base OZmap: https://data-manipulation-6.ozmap.com.br:9994
-* Credenciais OZmap e nome do projeto: Fornecidos individualmente;
+* URL da base OZmap: https://data-manipulation-6.ozmap.com.br:9994/api/v2/
+* Chave de API OZmap e nome do projeto: Fornecidos individualmente;
 * Arquivo XLS disponivel no diretório “files”;
 
 <a id="submissao"></a>
