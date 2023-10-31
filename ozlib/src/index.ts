@@ -1,4 +1,17 @@
-import { readExcelFile } from "./import/import-file";
+import { readExcelFile } from "./controllers/import.controller";
+import conn from "./database/connection";
 
-// readExcelFile('../files/data.xls')
-readExcelFile('/home/raphael/Área de Trabalho/www/OZmap/datamanipulation_technical_assessment_pl/files/data.xls')
+const beforeAll = () => {
+  const mongoUri: string = `mongodb://mongoadmin:secret@localhost:27017/`
+
+  try {
+    conn.connect(mongoUri)
+    readExcelFile('/home/raphael/Área de Trabalho/www/OZmap/datamanipulation_technical_assessment_pl/files/data.xls')
+  }
+  finally {
+    console.log('Fim da importação')
+  }
+};
+
+
+beforeAll()
