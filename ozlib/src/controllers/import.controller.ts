@@ -9,9 +9,9 @@ const readExcelFile = async (filePath: string) => {
   try {
     const file: WorkBook = xlsx.readFile(`${filePath}`);
 
-    file.SheetNames.forEach((sheetTab) => {
+    file.SheetNames.forEach(async (sheetTab) => {
       const items = xlsx.utils.sheet_to_json(file.Sheets[sheetTab])
-      importSheet(sheetTab, items)
+      await importSheet(sheetTab, items)
     })
   }
   catch (e) {
@@ -27,12 +27,12 @@ const importSheet = async (sheetTab: string, items: unknown[]) => {
     }
 
     case 'Splitters': {
-      importSplitters(items as Splitter[])
+     await importSplitters(items as Splitter[])
       break;
     }
 
     case 'Clients': {
-      importClients(items as Client[])
+      await importClients(items as Client[])
       break;
     }
   }
