@@ -1,16 +1,14 @@
-import { readExcelFile } from "./controllers/import.controller";
-import conn from "./database/connection";
+import { importAndUploadData } from "./controllers/import.controller";
 
 const beforeAll = async () => {
-  const mongoUri: string = `mongodb://mongoadmin:secret@localhost:27017/`
-
-  try {
-    conn.connect(mongoUri)
-    await readExcelFile('/home/raphael/Área de Trabalho/www/OZmap/datamanipulation_technical_assessment_pl/files/data.xls')
-  }
-  finally {
-    console.log('Fim da importação')
-  }
+    await importAndUploadData(
+        '/home/raphael/Área de Trabalho/www/OZmap/datamanipulation_technical_assessment_pl/files/data.xls',
+        {
+          user: 'mongoadmin',
+          password: 'secret',
+          host: 'localhost'
+        }
+    )
 };
 
 

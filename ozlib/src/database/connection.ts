@@ -1,5 +1,5 @@
 import mongoose from 'mongoose'
 
-const conn = new mongoose.Mongoose()
+const mongoConnection = new mongoose.Mongoose()
 
-export default conn
+export default mongoConnection

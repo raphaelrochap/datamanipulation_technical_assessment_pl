@@ -2,11 +2,12 @@ import xlsx, { WorkBook } from 'xlsx'
 import { importBoxes, uploadBoxes } from "../services/boxes.service";
 import { importClients, uploadClients } from "../services/clients.service";
 import { importSplitters, uploadSplitters } from "../services/splitters.service";
-import { Box, Client, Splitter } from "../types/types";
+import { Box, Client, Splitter, MongoCredentials } from "../types/types";
+import mongoConnection from '../database/connection';
 
-
-const readExcelFile = async (filePath: string) => {
+const importAndUploadData = async (filePath: string, mongoCredentials: MongoCredentials) => {
   try {
+    mongoConnection.connect(`mongodb://${mongoCredentials.user}:${mongoCredentials.password}@${mongoCredentials.host}:27017/`)
     const file: WorkBook = xlsx.readFile(`${filePath}`);
 
     file.SheetNames.forEach(async (sheetTab) => {
@@ -37,4 +38,4 @@ const readExcelFile = async (filePath: string) => {
   }
 }
 
-export { readExcelFile }
+export { importAndUploadData }

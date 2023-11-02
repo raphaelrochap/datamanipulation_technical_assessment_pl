@@ -1,3 +1,9 @@
+interface MongoCredentials {
+  user: string,
+  password: string
+  host: string
+}
+
 interface Box {
   Name: string,
   Latitude: number,
@@ -30,4 +36,4 @@ interface Splitter {
   'Allows client connection': boolean,
 }
 
-export { Box, Client, Splitter }
+export { Box, Client, Splitter, MongoCredentials }
