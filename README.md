@@ -1,82 +1,36 @@
-# Avaliação Técnica
+# OZlib
 
-<a id="sumario"></a>
-## Sumário
+Olá, avaliadores! :D
 
-<!-- TOC -->
-  * [Tarefa](#tarefa)
-  * [Instruções](#instrucoes)
-  * [Dados necessários](#dados)
-  * [Submissão da solução](#submissao)
-<!-- /TOC -->
+O meu projeto tem a intenção de se tornar um biblioteca.
+A ideia é que num projeto interno, seja possível fazer a importação da biblioteca 'ozlib' e possa importar o método 'importAndUploadData', onde uma api pode consumir essa ilb e método, podendo assim fazer a importação de dados passando como parâmetro: o caminho da planilha e os dados da credencial do mongo, que estará rodando em um container.
 
-<a id="tarefa"></a>
-## 1. Tarefa
+Dessa forma, os dados da planilha vão para o mongo, já com todos os tratamentos realizados, faltando apenas ser feito uma iteração pelos registros contidos no DB e sendo feito após, o upload das informações via api.
 
-Olá, candidato!
+Devido ao fato de precisar das respectivas caixas cadastradas, para o cadastramento das Splitters e dos Clients (ou Imóveis), é necessário incluir primeiro os Boxes para depois importar as outras entidades.
 
-Bem-vindo ao nosso teste técnico para desenvolvedor pleno. Este teste é uma oportunidade para você demonstrar suas habilidades no campo de manipulação de dados. O objetivo é avaliar a solução que você desenvolverá para um problema específico.
+## Configurando
 
-A tarefa consiste em criar uma aplicação backend em Typescript que realizará as seguintes ações:
+Para testar, é necessário alterar o arquivo index.ts, e passar os respectivos: caminho da planilha e credenciais para incuir a informação no MongoDB.
 
-1. Ler um arquivo XLS fornecido.
-2. Salvar os dados lidos em um banco de dados MongoDB.
-3. Criar diversos elementos via API em uma base OZmap com base nos dados salvos no banco.
+## Executando
 
-Além disso, temos alguns requisitos adicionais:
+O projeto foi feito utilizando npm, e para testá-lo, basta rodar os seguintes comandos:
 
-* A aplicação deve ser executada em um contêiner Docker.
-* Deve haver uma conexão com o MongoDB via contêiner.
-* É necessário implementar testes automatizados.
-* Antes de criar elementos na base OZmap, os dados lidos devem ser validados.
-* A aplicação deve ter um sistema de tratamento de erros para lidar com possíveis falhas nas APIs externas ou na lógica da aplicação.
-* Deve ser utilizado um sistema de logs para a aplicação, e como diferencial, disponibilizar uma interface externa para consulta desses logs.
-* Você deve incluir um arquivo read.me com instruções sobre como executar a aplicação e informações de configuração.
-* A aplicação deve ser capaz de exportar relatórios de execução no formato CSV.
-* A aplicação deve ser eficiente e capaz de lidar com grandes volumes de dados, considerando que a máquina onde está a base OZmap pode ter recursos limitados.
+* npm install
+* npm run dev
 
-Boa sorte e divirta-se desenvolvendo a solução!
- 
-<a id="instrucoes"></a>
-## 2. Instruções
+## Escolhas
 
- O tipo dos elementos a serem criados na base OZmap é definido pelo nome de cada tabela do arquivo XLS. Os elementos devem ser criados no MongoDB em coleções separadas para cada tipo. O atributo “project” deve ser preenchido com o ID do projeto OZmap fornecido ao candidato (fornecemos o nome do projeto, o candidato precisa encontrar o ID do projeto utilizando a API OZmap). Sobre os elementos a serem criados na base OZmap:
- * A sequencia de criação deve ser: Boxes, Splitters, Clients;
- * Para criação de Boxes:
-   * As coordenadas devem ser enviadas somente pelos atributos lng e lat;
-   * Enviar o atributo implanted sempre com valor "true";
-   * Os IDs dos tipos de caixa devem ser buscados pela api: /box-types
-   * Exemplo de atributos a serem enviados: name, lat, lng, boxType (ID), implanted=true, project (ID), hierarchyLevel;
- * Para criação de Splitters:
-   * A coluna “Box” se refere ao atributo "parent" dos splitters, preenchido por um ID de box;
-   * Os IDs dos tipos de splitter devem ser buscados pela api: /splitter-types
-   * Os dados das colunas Inputs e Outputs devem ser enviados pelo atributo "ratio", da seguinte forma:
-     "ratio": {
-       "output": “coluna Outputs” ,
-       "input": “coluna Inputs” 
-     }
-   * Exemplo de atributos a serem enviados: implanted, isDrop, parent (ID da box), project (ID), name, splitterType (ID), ratio;
- * Para a criação de clientes:
-   * Para criação de um cliente completo no OZmap, é necessário realizar a criação de um imóvel, no qual é possível enviar os dados do cliente a ser criado;
-   * Os dados de client.name, client.code e address devem ser buscados em uma API externa fornecida abaixo, que gera usuários randômicos;
-   * Atributos variáveis do imóvel/cliente a ser criado, buscados na api externa: address = location.street.name + location.street.number + location.postcode + location.city + location.state + location.country; client.name = name.first + name.last; client.code = name.first + "." + name.last (tudo em minúsculo);
-   * As coordenadas devem ser enviadas somente pelos atributos lng e lat;
-   * O Status deve ser enviado 0 (OK) ou 1 (ERROR);
-   * Enviar os atributos force, auto_connect e client.implanted sempre com valor "true";
-   * Exemplo de atributos a serem enviados: address (api externa), project (ID), box (ID), lat, lng, force=true, auto_connect=true, client.implanted=true, client.name (api externa), client.code (api externa), client.status (1 ou 0);
+Para esse pojeto decidi criar um arquivo 'types.ts' onde conterão todas as tipagens do projeto, que seriam exportados na lib, de forma a permitir que outros devs possam utilizar as tipagens em seus projetos.
+Sobre as bibliotecas, decidi utlizar o axios por ser uma biblioteca simples para fazer as requisições, e a lib 'xlsx' para fazer a importação dos dados pois se demonstrou extremamente simples, e permite utilizar o JS da melhor forma. Da mesma forma, escolhi o mongoose, pois é um biblioteca direta para acesso ao MongoDB, que me permite explorar as tipages de maneiras inteligentes, e permitindo um desenvolvimento melhor.
 
-<a id="dados"></a>
-## 3. Dados necessários
-* API externa: https://randomuser.me/api
-* Documentação API OZmap: https://ozmap.stoplight.io/docs/ozmap/3qm4gmpe6lh1q-ferramentas-de-pesquisa
-* URL da base OZmap: https://data-manipulation-6.ozmap.com.br:9994/api/v2/
-* Chave de API OZmap e nome do projeto: Fornecidos individualmente;
-* Arquivo XLS disponivel no diretório “files”;
+## Futuro
 
-<a id="submissao"></a>
-## 4. Submissão da solução
+Se tivesse mais tempo, implementaria o log solicitado, e quanto ao pedido de incluir uma forma de visualizar os log, eu faria um script que criaria um simples arquivo html junto com o log, assim como acontecem algumas bibliotecas de cobertura de testes. O Javascript os montaria dinamicamente conforme a alteração do log, e geraria um arquivo .html, sem a necessidade de utilizar nenhuma biblioteca ou framework para isso.
 
-Para que sua solução possa ser avaliada, ela precisa ser submetida de acordo com as estipulações listadas abaixo:
+Também não foi possível implementar os testes automatizados, e com certeza seria um passo a ser feito, no caso desse Desafio, o faria por úlitmo.
 
-* Realize o fork deste repositório.
-* Faça os commits da sua solução em um branch com o seguinte formato de nome: `solution/[your-github-username]`.
+## Agradecimentos
+
+Agradeço a oportunidade, e creio que foi um desafio interessante, e bem diferente do que eu imaginava.
