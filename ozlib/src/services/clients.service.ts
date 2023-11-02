@@ -51,7 +51,7 @@ const uploadClients = async () => {
     }
     
     try {
-      const response = await api.post('/clients', newClient)
+      const response = await api.post('/properties', newClient)
       if (response.status === 201)
         console.log('Client enviado com sucesso!')
     }
