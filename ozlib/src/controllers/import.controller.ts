@@ -1,7 +1,7 @@
 import xlsx, { WorkBook } from 'xlsx'
-import { importBoxes } from "../services/boxes.service";
-import { importClients } from "../services/clients.service";
-import { importSplitters } from "../services/splitters.service";
+import { importBoxes, uploadBoxes } from "../services/boxes.service";
+import { importClients, uploadClients } from "../services/clients.service";
+import { importSplitters, uploadSplitters } from "../services/splitters.service";
 import { Box, Client, Splitter } from "../types/types";
 
 
@@ -11,30 +11,29 @@ const readExcelFile = async (filePath: string) => {
 
     file.SheetNames.forEach(async (sheetTab) => {
       const items = xlsx.utils.sheet_to_json(file.Sheets[sheetTab])
-      await importSheet(sheetTab, items)
+      switch (sheetTab) {
+        case 'Boxes': {
+          await importBoxes(items as Box[])
+          await uploadBoxes()
+          break;
+        }
+    
+        case 'Splitters': {
+          await importSplitters(items as Splitter[])
+          await uploadSplitters()
+          break;
+        }
+    
+        case 'Clients': {
+          await importClients(items as Client[])
+          await uploadClients()
+          break;
+        }
+      }
     })
   }
   catch (e) {
     console.log(e);
-  }
-}
-
-const importSheet = async (sheetTab: string, items: unknown[]) => {
-  switch (sheetTab) {
-    case 'Boxes': {
-      await importBoxes(items as Box[])
-      break;
-    }
-
-    case 'Splitters': {
-     await importSplitters(items as Splitter[])
-      break;
-    }
-
-    case 'Clients': {
-      await importClients(items as Client[])
-      break;
-    }
   }
 }
 

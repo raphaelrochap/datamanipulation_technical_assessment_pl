@@ -30,4 +30,31 @@ const importSplitters = async (items: Splitter[]) => {
   console.log(`Splitters importados.`)
 }
 
-export { importSplitters }
+const uploadSplitters = async () => {
+  const splitters: Splitter[] = await SplitterModel.find()
+  for (const splitter of splitters){
+    const newSplitter = {
+      parent: splitter.Box,
+      splitterType: splitter.Type,
+      ratio: {
+        output: splitter.Outputs,
+        input: splitter.Inputs
+      },
+      implanted: splitter.implanted,
+      isDrop: false,
+      project: "6538160d0cbb3900142bb98c",
+      name: splitter.Name
+    }
+    
+    try {
+      const response = await api.post('/splitters', newSplitter)
+      if (response.status === 201)
+        console.log('Splitter enviada com sucesso!')
+    }
+    catch(e) {
+      console.log(e)
+    }
+  }
+}
+
+export { importSplitters, uploadSplitters }

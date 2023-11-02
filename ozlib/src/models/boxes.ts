@@ -7,6 +7,8 @@ const BoxSchema = new conn.Schema<Box>({
   Longitude: { type: 'Number', required: true },
   Type: { type: 'String', required: true },
   Level: { type: 'Number', required: true },
+  implanted: { type: 'boolean'},
+
 });
 
 const BoxModel = conn.model<Box>('boxes', BoxSchema)

@@ -4,6 +4,7 @@ interface Box {
   Longitude: number,
   Type: string,
   Level: Number
+  implanted: boolean
 }
 
 interface Client {

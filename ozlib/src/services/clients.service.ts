@@ -32,4 +32,33 @@ const importClients = async (items: Client[]) => {
   console.log(`Clients importados.`)
 }
 
-export { importClients }
+const uploadClients = async () => {
+  const clients: Client[] = await ClientModel.find()
+  for (const client of clients){
+    const newClient = {
+      address: client.Address,
+      box: client.Box,
+      coords: [client.Latitude, client.Longitude],
+      project: "6538160d0cbb3900142bb98c",
+      client: {
+        name: client.ClientName,
+        code: client.ClientCode,
+        status: client.Status,
+        implanted: client.ClientImplanted
+      },
+      force: client.Force,
+      auto_connect: client.Auto_connect
+    }
+    
+    try {
+      const response = await api.post('/clients', newClient)
+      if (response.status === 201)
+        console.log('Client enviado com sucesso!')
+    }
+    catch(e) {
+      console.log(e)
+    }
+  }
+}
+
+export { importClients, uploadClients }
